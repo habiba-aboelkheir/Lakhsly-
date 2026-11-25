@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>لخّص لي</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+</head>
+<body>
+  <div class="layout">
+    <aside id="sidebar" class="sidebar" aria-label="Sidebar">
+      <div class="sidebar-header">
+        <span id="sideTitle" class="sidebar-title">المصادر والملفات</span>
+        <button type="button" id="closeSideBtn" class="ghost-icon" aria-label="Close">✕</button>
+      </div>
+
+      <div class="upload-grid">
+        <button type="button" id="uploadFolderBtn" class="action-btn solid">رفع فولدر</button>
+        <button type="button" id="uploadFilesBtn" class="action-btn">رفع ملف / PDF</button>
+        <input type="file" id="folderInput" webkitdirectory directory multiple hidden />
+        <input type="file" id="filesInput" accept=".pdf,.txt,.md,.csv,.json,.html,.css,.js,.py,.xml,.log,text/*" multiple hidden />
+      </div>
+
+      <div id="filesInfo" class="files-status">لا توجد ملفات مرفوعة</div>
+      <ul id="filesList" class="files-list"></ul>
+
+      <div class="sidebar-footer">
+        <button type="button" id="sidePodcastBtn" class="action-btn soft">بودكاست</button>
+        <button type="button" id="clearFilesBtn" class="action-btn subtle-danger">مسح الملفات</button>
+      </div>
+    </aside>
+
+    <div id="overlay" class="overlay"></div>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-side">
+          <button type="button" id="openSideBtn" class="ghost-icon" aria-label="Toggle Sidebar">☰</button>
+          <h1 id="brandTitle" class="brand">لخّص لي</h1>
+        </div>
+
+        <div class="topbar-side">
+          <button type="button" id="langSwitchBtn" class="pill-btn">EN</button>
+          <button type="button" id="topQuizBtn" class="pill-btn">كويز</button>
+          <button type="button" id="topPodBtn" class="pill-btn">بودكاست</button>
+          <button type="button" id="resetChatBtn" class="pill-btn">محادثة جديدة</button>
+        </div>
+      </header>
+
+      <section id="podPlayer" class="podcast-bar" hidden aria-label="Podcast Player">
+        <div class="podcast-info">
+          <span id="podTag" class="podcast-badge">بودكاست</span>
+          <span id="podName" class="podcast-title">لخّص لي</span>
+        </div>
+        <div class="podcast-controls">
+          <button type="button" id="podToggleBtn" class="pod-btn primary">تشغيل</button>
+          <button type="button" id="podStopBtn" class="pod-btn">إيقاف</button>
+          <button type="button" id="podRateBtn" class="pod-btn">1x</button>
+          <button type="button" id="podHideBtn" class="pod-btn">✕</button>
+        </div>
+        <div class="podcast-progress">
+          <div id="podBarFill" class="podcast-progress-fill"></div>
+        </div>
+      </section>
+
+      <div id="statusBanner" class="status-banner" hidden></div>
+
+      <div id="chatFeed" class="chat-feed" aria-live="polite"></div>
+
+      <div class="composer-wrapper">
+        <div id="attachBadge" class="attach-strip" hidden></div>
+        <form id="chatForm" class="composer">
+          <button type="button" id="quickFileBtn" class="composer-icon" title="Attach">＋</button>
+          <textarea
+            id="userInput"
+            rows="1"
+            placeholder="اسأل أي حاجة أو ارفع ملف..."
+          ></textarea>
+          <button type="submit" id="submitBtn" class="send-btn">إرسال</button>
+        </form>
+      </div>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
